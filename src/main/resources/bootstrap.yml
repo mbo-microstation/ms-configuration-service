@@ -1,3 +1,5 @@
+mbo.ms.configuration.repo: https://github.com/mbo-microstation/ms-configuration-repo.git
+
 server.port: 8888
 spring:
   cloud:
@@ -6,12 +8,11 @@ spring:
         enabled: false
       server:
         git:
-          uri: https://github.com/mbo-microstation/ms-configuration-repo.git
+          search-paths: '{profile}'
+          uri: ${mbo.ms.configuration.repo}
 eureka:
   client:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      default-zone: http://${mbo.ms.discovery.uri:localhost}:${server.port}/eureka/
-  instance:
-    prefer-ip-address: true
+      default-zone: http://${mbo.ms.discovery.uri:localhost}:8761/eureka/
